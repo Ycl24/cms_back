@@ -6,6 +6,7 @@ package render
 
 import (
 	"fmt"
+	"io"
 	"net/http"
 )
 
@@ -34,6 +35,6 @@ func WriteString(w http.ResponseWriter, format string, data []interface{}) (err 
 		_, err = fmt.Fprintf(w, format, data...)
 		return
 	}
-	_, err = w.Write([]byte(format))
+	_, err = io.WriteString(w, format)
 	return
 }
